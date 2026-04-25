@@ -1,17 +1,43 @@
-# dmdlab_salawa
+# Salawa — DMD Lab
 
-A new Flutter project.
+Horaires de prière de la Grande Mosquée de Paris + radio difusant la chaîne Radio Orient. Sans pub, sans compte.
 
-## Getting Started
+## Stack
 
-This project is a starting point for a Flutter application.
+Flutter · Riverpod · GoRouter · just_audio · google_generative_ai · shared_preferences
 
-A few resources to get you started if this is your first Flutter project:
+## Couleurs
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Fond vert `#13411B` · Accent or `#D4AF37`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Fonctionnalités
+
+- Horaires de prière du jour (source : grandemosqueedeparis.fr)
+- Mise en évidence de la prochaine prière
+- Calendrier mensuel complet
+- Récupération automatique chaque mois via scraping + analyse Gemini Vision
+- Cache local mensuel (mois précédent supprimé automatiquement)
+- Radio Orient en streaming (lecture en arrière-plan, contrôles écran de verrouillage)
+
+## Variables d'environnement
+
+Créer un fichier `secrets.json` à la racine du projet :
+
+```json
+{
+  "GEMINI_API_KEY": "..."
+}
+```
+
+## Lancer le projet
+
+```bash
+flutter pub get
+flutter run --dart-define-from-file=secrets.json
+```
+
+## Build APK
+
+```bash
+flutter build apk --release --dart-define-from-file=secrets.json
+```

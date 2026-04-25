@@ -14,6 +14,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncPrayers = ref.watch(monthlyPrayersProvider);
     final nextPrayer = ref.watch(nextPrayerProvider);
+    final activePrayer = ref.watch(activePrayerProvider);
     final loadingStep = ref.watch(loadingStepProvider);
     final now = DateTime.now();
     final raw = DateFormat('EEEE d MMMM yyyy', 'fr_FR').format(now);
@@ -74,6 +75,7 @@ class HomeScreen extends ConsumerWidget {
                         name: e.key,
                         time: e.value,
                         isNext: e.key == nextPrayer,
+                        isActive: e.key == activePrayer,
                       );
                     }).toList(),
                   );

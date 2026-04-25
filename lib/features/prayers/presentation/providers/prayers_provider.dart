@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/repositories/prayer_repository.dart';
 import '../../data/services/gemini_prayer_parser.dart';
@@ -6,6 +7,17 @@ import '../../domain/day_prayers.dart';
 final _repository = PrayerRepository();
 
 final loadingStepProvider = StateProvider<String>((ref) => '');
+
+// Ticks at the start of each new minute, aligning to the clock
+Stream<DateTime> _minuteStream() async* {
+  yield DateTime.now();
+  final now = DateTime.now();
+  await Future.delayed(Duration(seconds: 60 - now.second));
+  yield DateTime.now();
+  yield* Stream.periodic(const Duration(minutes: 1), (_) => DateTime.now());
+}
+
+final currentTimeProvider = StreamProvider<DateTime>((ref) => _minuteStream());
 
 DayPrayers _fromPrayerDay(PrayerDay d) => DayPrayers(
       day: d.day,
@@ -66,10 +78,25 @@ final todayPrayersProvider = Provider<DayPrayers?>((ref) {
   });
 });
 
+// Prayer whose time == current minute → bell icon
+final activePrayerProvider = Provider<String?>((ref) {
+  final today = ref.watch(todayPrayersProvider);
+  if (today == null) return null;
+  final now = ref.watch(currentTimeProvider).valueOrNull ?? DateTime.now();
+  final currentMinutes = now.hour * 60 + now.minute;
+  for (final entry in today.entries) {
+    final parts = entry.value.split(':');
+    final prayerMinutes = int.parse(parts[0]) * 60 + int.parse(parts[1]);
+    if (currentMinutes == prayerMinutes) return entry.key;
+  }
+  return null;
+});
+
+// First prayer whose time is strictly in the future
 final nextPrayerProvider = Provider<String?>((ref) {
   final today = ref.watch(todayPrayersProvider);
   if (today == null) return null;
-  final now = DateTime.now();
+  final now = ref.watch(currentTimeProvider).valueOrNull ?? DateTime.now();
   final currentMinutes = now.hour * 60 + now.minute;
   for (final entry in today.entries) {
     final parts = entry.value.split(':');
