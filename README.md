@@ -13,7 +13,9 @@ Fond vert `#13411B` · Accent or `#D4AF37`
 ## Fonctionnalités
 
 - Horaires de prière du jour (source : grandemosqueedeparis.fr)
-- Mise en évidence de la prochaine prière
+- Mise en évidence de la prochaine prière en temps réel (rafraîchissement à la minute)
+- Indicateur clignotant sur la prière en cours
+- Tap sur une prière → horloge analogique centrée
 - Calendrier mensuel complet
 - Récupération automatique chaque mois via scraping + analyse Gemini Vision
 - Cache local mensuel (mois précédent supprimé automatiquement)
