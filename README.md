@@ -1,6 +1,19 @@
+<p align="center">
+  <img src="assets/images/salawa_logo_black.png#gh-light-mode-only" width="100" alt="Salawa" />
+  <img src="assets/images/salawa_logo_white.png#gh-dark-mode-only" width="100" alt="Salawa" />
+</p>
+
 # Salawa — DMD Lab
 
-Horaires de prière de la Grande Mosquée de Paris + radio difusant la chaîne Radio Orient. Sans pub, sans compte.
+Application minimaliste pour connaître les heures de prières de Paris et écouter Radio Orient — conçue pour être utilisable par tous, y compris les personnes âgées ou ne sachant pas lire, grâce à des indicateurs visuels clairs et une interface volontairement simple. Sans pub, sans compte.
+
+[Voir la roadmap →](ROADMAP.md)
+
+## Pourquoi cette app
+
+Salawa est née d'un besoin concret : permettre aux personnes âgées ou ayant des difficultés avec la lecture de savoir en un coup d'œil si une prière est passée, en cours ou à venir — sans chercher dans un tableau, sans lire des colonnes de chiffres.
+
+L'interface met en avant la prochaine prière, indique visuellement celle en cours, et permet d'écouter Radio Orient en un tap.
 
 ## Stack
 

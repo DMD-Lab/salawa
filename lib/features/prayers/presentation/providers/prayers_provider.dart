@@ -92,10 +92,11 @@ final activePrayerProvider = Provider<String?>((ref) {
   return null;
 });
 
-// First prayer whose time is strictly in the future
+// First prayer whose time is strictly in the future (null when a prayer is active)
 final nextPrayerProvider = Provider<String?>((ref) {
   final today = ref.watch(todayPrayersProvider);
   if (today == null) return null;
+  if (ref.watch(activePrayerProvider) != null) return null;
   final now = ref.watch(currentTimeProvider).valueOrNull ?? DateTime.now();
   final currentMinutes = now.hour * 60 + now.minute;
   for (final entry in today.entries) {
