@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="assets/images/salawa_logo_black.png#gh-light-mode-only" width="100" alt="Salawa" />
-  <img src="assets/images/salawa_logo_white.png#gh-dark-mode-only" width="100" alt="Salawa" />
+  <img src="assets/images/salawa_logo_black.png#gh-light-mode-only" width="200" alt="Salawa" />
+  <img src="assets/images/salawa_logo_white.png#gh-dark-mode-only" width="200" alt="Salawa" />
 </p>
 
 # Salawa — DMD Lab
@@ -56,3 +56,11 @@ flutter run --dart-define-from-file=secrets.json
 ```bash
 flutter build apk --release --dart-define-from-file=secrets.json
 ```
+
+---
+
+<p align="center">
+  <sub>Une app créée par</sub><br/>
+  <img src="assets/images/dmdlab_logo_black.png#gh-light-mode-only" width="150" alt="DMD Lab" />
+  <img src="assets/images/dmdlab_logo_white.png#gh-dark-mode-only" width="150" alt="DMD Lab" />
+</p>
