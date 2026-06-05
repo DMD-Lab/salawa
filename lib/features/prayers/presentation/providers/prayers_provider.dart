@@ -92,6 +92,24 @@ final activePrayerProvider = Provider<String?>((ref) {
   return null;
 });
 
+// Prayers whose time has already passed (not including the active one)
+final pastPrayersProvider = Provider<Set<String>>((ref) {
+  final today = ref.watch(todayPrayersProvider);
+  if (today == null) return {};
+  final now = ref.watch(currentTimeProvider).valueOrNull ?? DateTime.now();
+  final currentMinutes = now.hour * 60 + now.minute;
+  final active = ref.watch(activePrayerProvider);
+  final past = <String>{};
+  for (final entry in today.entries) {
+    final parts = entry.value.split(':');
+    final prayerMinutes = int.parse(parts[0]) * 60 + int.parse(parts[1]);
+    if (prayerMinutes < currentMinutes && entry.key != active) {
+      past.add(entry.key);
+    }
+  }
+  return past;
+});
+
 // First prayer whose time is strictly in the future (null when a prayer is active)
 final nextPrayerProvider = Provider<String?>((ref) {
   final today = ref.watch(todayPrayersProvider);

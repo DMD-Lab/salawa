@@ -11,12 +11,14 @@ class PrayerTile extends StatefulWidget {
     required this.time,
     required this.isNext,
     required this.isActive,
+    this.isPast = false,
   });
 
   final String name;
   final String time;
   final bool isNext;
   final bool isActive;
+  final bool isPast;
 
   @override
   State<PrayerTile> createState() => _PrayerTileState();
@@ -74,7 +76,9 @@ class _PrayerTileState extends State<PrayerTile>
     final textColor = highlighted ? Colors.black : Colors.white;
     final timeColor = highlighted ? Colors.black : AppColors.primary;
 
-    return AppTappable(
+    return Opacity(
+      opacity: widget.isPast ? 0.4 : 1.0,
+      child: AppTappable(
       onTap: () => _showClock(context),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 600),
@@ -121,6 +125,7 @@ class _PrayerTileState extends State<PrayerTile>
             ),
           ],
         ),
+      ),
       ),
     );
   }
